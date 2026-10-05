@@ -1,0 +1,49 @@
+{
+  "tests": [
+    {
+      "name": "Part 1: IntegerStreams",
+      "run": "./gradlew test --tests IntegerStreamsTest",
+      "points": 10
+    },
+    {
+      "name": "Part 2: OptionalValues",
+      "run": "./gradlew test --tests OptionalValuesTest",
+      "points": 10
+    },
+    {
+      "name": "Part 3: ListsAndStreams",
+      "run": "./gradlew test --tests ListsAndStreamsTest",
+      "points": 10
+    },
+    {
+      "name": "Part 4: MappingStreams",
+      "run": "./gradlew test --tests MappingStreamsTest",
+      "points": 10
+    },
+    {
+      "name": "Part 5: FilteringStreams",
+      "run": "./gradlew test --tests FilteringStreamsTest",
+      "points": 10
+    },
+    {
+      "name": "Part 6: PredicatesWithStreams",
+      "run": "./gradlew test --tests PredicatesWithStreamsTest",
+      "points": 10
+    },
+    {
+      "name": "Part 7: ObjectStreams",
+      "run": "./gradlew test --tests ObjectStreamsTest",
+      "points": 10
+    },
+    {
+      "name": "Part 8: PersonStreams",
+      "run": "./gradlew test --tests PersonStreamsTest",
+      "points": 10
+    },
+    {
+      "name": "Part 9: PizzaStreams",
+      "run": "./gradlew test --tests PizzaStreamsTest",
+      "points": 20
+    }
+  ]
+}
