@@ -16,7 +16,7 @@ import java.util.stream.Stream;
  */
 public class FilteringStreams {
 
-    /**
+	/**
      * Returns a stream that only contains the even numbers from the specified
      * stream.
      *
@@ -24,8 +24,10 @@ public class FilteringStreams {
      * @return a stream of even numbers in the same order as in the original stream
      */
     public IntStream filterEvenNumbers(IntStream numbers) {
-        // hint: use the filter() method to filter out the odd numbers.
-        return null; // TODO
+        if (numbers == null) {
+            return IntStream.empty();
+        }
+        return numbers.filter(n -> n % 2 == 0);
     }
 
     /**
@@ -39,8 +41,10 @@ public class FilteringStreams {
      * @return a stream of numbers between min and max (inclusive) in the same order
      */
     public IntStream filterNumbersBetween(IntStream numbers, int min, int max) {
-        // hint: use the filter() method to only include numbers between min and max
-        return null; // TODO
+        if (numbers == null) {
+            return IntStream.empty();
+        }
+        return numbers.filter(n -> n >= min && n <= max);
     }
 
     /**
@@ -54,9 +58,10 @@ public class FilteringStreams {
      * @return a stream of strings that start with the specified prefix
      */
     public Stream<String> filterStringsStartingWith(Stream<String> strings, String prefix) {
-        // hint: use the filter() method to only include strings that start with the
-        // specified prefix.
-        return null; // TODO
+        if (strings == null) {
+            return Stream.empty();
+        }
+        return strings.filter(s -> s != null && prefix != null && s.startsWith(prefix));
     }
 
     /**
@@ -70,7 +75,10 @@ public class FilteringStreams {
      * @return a stream of strings that contain the specified substring
      */
     public Stream<String> filterIncludingSubstring(Stream<String> strings, String include) {
-        return null; // TODO
+        if (strings == null) {
+            return Stream.empty();
+        }
+        return strings.filter(s -> s != null && include != null && s.contains(include));
     }
 
     /**
@@ -84,6 +92,9 @@ public class FilteringStreams {
      * @return a stream of strings that do not contain the specified substring
      */
     public Stream<String> filterNotIncludingSubstring(Stream<String> strings, String exclude) {
-        return null; // TODO
+        if (strings == null) {
+            return Stream.empty();
+        }
+        return strings.filter(s -> s != null && exclude != null && !s.contains(exclude));
     }
 }

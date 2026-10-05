@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
  */
 public class OptionalValues {
 
-    /**
+	/**
      * Returns the average of integers in the specified IntStream. If the stream is
      * empty, returns 0.0.
      *
@@ -19,18 +19,10 @@ public class OptionalValues {
      * @return the average of the numbers in the stream or 0 if the stream is empty
      */
     public double average(IntStream stream) {
-        /*
-         * See the `average()` method in the documentation of IntStream. Note that the
-         * stream may be empty, so there may not be an average value. That is why the
-         * method returns a special type called OptionalDouble.
-         *
-         * You can check if the OptionalDouble is empty by calling the `isPresent()`
-         * method. Another approach is to use the `orElse()` method, which returns the
-         * actual value if it is present, or an alternative value if the OptionalDouble
-         * is empty.
-         */
-
-        return -1; // TODO
+        if (stream == null) {
+            return 0.0;
+        }
+        return stream.average().orElse(0.0);
     }
 
     /**
@@ -41,6 +33,9 @@ public class OptionalValues {
      * @return the maximum value in the stream or 0 if the stream is empty
      */
     public int maximum(IntStream stream) {
-        return -1; // TODO: see the IntStream documentation
+        if (stream == null) {
+            return 0;
+        }
+        return stream.max().orElse(0);
     }
 }

@@ -1,5 +1,6 @@
 package part06;
 
+import java.util.Objects;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -11,7 +12,7 @@ import java.util.stream.Stream;
  */
 public class PredicatesWithStreams {
 
-    /**
+	/**
      * Returns true if all the numbers in the specified stream are positive. Zero is
      * not considered positive in this method.
      *
@@ -19,8 +20,10 @@ public class PredicatesWithStreams {
      * @return true if all the numbers in the stream are over zero
      */
     public boolean allPositive(IntStream numbers) {
-        // hint: see the `allMatch()` method
-        return false; // TODO
+        if (numbers == null) {
+            return false;
+        }
+        return numbers.allMatch(n -> n > 0);
     }
 
     /**
@@ -32,10 +35,12 @@ public class PredicatesWithStreams {
      * @return the first positive number in the stream or 0 if there are no positive
      */
     public int getFirstPositive(IntStream numbers) {
-        /*
-         * hint: you can chain the `filter()`, `findFirst()` and `isPresent()` methods.
-         */
-        return -1; // TODO
+        if (numbers == null) {
+            return 0;
+        }
+        return numbers.filter(n -> n > 0)
+                      .findFirst()
+                      .orElse(0);
     }
 
     /**
@@ -45,7 +50,9 @@ public class PredicatesWithStreams {
      * @return true if the stream contains no null values
      */
     public boolean containsNoNulls(Stream<String> strings) {
-        // hint: see the `noneMatch()` method
-        return false; // TODO
+        if (strings == null) {
+            return true;
+        }
+        return strings.noneMatch(Objects::isNull);
     }
 }

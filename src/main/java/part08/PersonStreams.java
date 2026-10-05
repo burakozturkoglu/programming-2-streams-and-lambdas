@@ -11,7 +11,7 @@ import person.Person;
  */
 public class PersonStreams {
 
-    /**
+	/**
      * Returns a stream of adults in the specified stream of persons.
      * An adult is a person whose age is 18 or over.
      *
@@ -19,8 +19,10 @@ public class PersonStreams {
      * @return a stream of the adults in the given stream
      */
     public Stream<Person> getAdults(Stream<Person> persons) {
-        // Hint: you can call the `age()` method on a Person object to get the age.
-        return null; // TODO
+        if (persons == null) {
+            return Stream.empty();
+        }
+        return persons.filter(p -> p != null && p.age() >= 18);
     }
 
     /**
@@ -30,15 +32,11 @@ public class PersonStreams {
      * @return a stream of new Person objects with incremented ages
      */
     public Stream<Person> incrementAge(Stream<Person> persons) {
-        /*
-         * Hint: you cannot modify the age of the persons in the original stream. You
-         * need to create new Person objects.
-         *
-         * Use the `map()` method to create new stream and the `Person` constructor to
-         * create new Person objects with incremented ages. The name and age of a Person
-         * object can be accessed using the `name()` and `age()` methods.
-         */
-        return null; // TODO
+        if (persons == null) {
+            return Stream.empty();
+        }
+        return persons.filter(p -> p != null)
+                      .map(p -> new Person(p.name(), p.age() + 1));
     }
 
     /**
@@ -53,6 +51,15 @@ public class PersonStreams {
      * @return a stream of Person objects
      */
     public Stream<Person> csvToPersons(Stream<String> csvLines) {
-        return null; // TODO
+        if (csvLines == null) {
+            return Stream.empty();
+        }
+        return csvLines.filter(line -> line != null && !line.trim().isEmpty())
+                       .map(line -> {
+                           String[] parts = line.split(",");
+                           String name = parts[0].trim();
+                           int age = Integer.parseInt(parts[1].trim());
+                           return new Person(name, age);
+                       });
     }
 }

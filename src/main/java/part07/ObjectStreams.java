@@ -1,5 +1,6 @@
 package part07;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -12,14 +13,18 @@ import person.Person;
  */
 public class ObjectStreams {
 
-    /**
+	/**
      * Returns a list of the lengths of the strings in the specified stream.
      *
      * @param strings the stream of strings
      * @return a list of the lengths of the strings
      */
     public List<Integer> getLengths(Stream<String> strings) {
-        return null; // TODO
+        if (strings == null) {
+            return Collections.emptyList();
+        }
+        return strings.map(String::length)
+                      .toList();
     }
 
     /**
@@ -36,8 +41,11 @@ public class ObjectStreams {
      * @return a list of the ages
      */
     public List<Integer> getAges(Stream<Person> persons) {
-        // Hint: This method is very similar to the getLengths() method above!
-        return null; // TODO
+        if (persons == null) {
+            return Collections.emptyList();
+        }
+        return persons.map(Person::age)
+                      .toList();
     }
 
     /**
@@ -52,7 +60,11 @@ public class ObjectStreams {
      * @return a list of the names
      */
     public List<String> getNames(Stream<Person> persons) {
-        return null; // TODO
+        if (persons == null) {
+            return Collections.emptyList();
+        }
+        return persons.map(Person::name)
+                      .toList();
     }
 
     /**
@@ -63,10 +75,11 @@ public class ObjectStreams {
      * @return the average age of the persons or 0 if the stream is empty
      */
     public double getAverageAge(Stream<Person> persons) {
-        /*
-         * Hint: you can use the `getAges()` method above to get a stream of the ages.
-         * You may remember `mapToInt()` and `average` from previous exercises.
-         */
-        return -1; // TODO
+        if (persons == null) {
+            return 0.0;
+        }
+        return persons.mapToInt(Person::age)
+                      .average()
+                      .orElse(0.0);
     }
 }

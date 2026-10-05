@@ -22,7 +22,7 @@ import java.util.stream.Stream;
  */
 public class MappingStreams {
 
-    /**
+	/**
      * Returns a stream where all the numbers in the given stream are doubled
      * (multiplied by 2).
      *
@@ -30,8 +30,10 @@ public class MappingStreams {
      * @return a stream of doubled numbers
      */
     public IntStream doubleValuesInStream(IntStream numbers) {
-        // hint: use the map() method to double the values in the stream.
-        return null; // TODO
+        if (numbers == null) {
+            return IntStream.empty();
+        }
+        return numbers.map(x -> x * 2);
     }
 
     /**
@@ -43,8 +45,10 @@ public class MappingStreams {
      * @return a stream of numbers multiplied by the multiplier
      */
     public IntStream multiplyValuesInStream(IntStream numbers, int multiplier) {
-        // hint: use the map() method to multiply the values in the stream.
-        return null; // TODO
+        if (numbers == null) {
+            return IntStream.empty();
+        }
+        return numbers.map(x -> x * multiplier);
     }
 
     /**
@@ -54,11 +58,10 @@ public class MappingStreams {
      * @return an IntStream containing the numbers from the list
      */
     public IntStream mapListToIntStream(List<Integer> numbers) {
-        /*
-         * hint: First, use the stream() method to create a Stream<Integer>.
-         * Then, use mapToInt() method to convert that to an IntStream.
-         */
-        return null; // TODO
+        if (numbers == null) {
+            return IntStream.empty();
+        }
+        return numbers.stream().mapToInt(Integer::intValue);
     }
 
     /**
@@ -75,8 +78,11 @@ public class MappingStreams {
      * @return a stream of strings with the prefix added
      */
     public Stream<String> prefixAllStrings(Stream<String> strings, String prefix) {
-        // hint: once again, use the map() method to add the prefix
-        return null; // TODO
+        if (strings == null) {
+            return Stream.empty();
+        }
+        String validPrefix = (prefix != null) ? prefix : "";
+        return strings.map(s -> validPrefix + s);
     }
 
     /**
@@ -92,7 +98,11 @@ public class MappingStreams {
      * @return a stream of strings with the suffix added
      */
     public Stream<String> suffixAllStrings(Stream<String> strings, String suffix) {
-        return null; // TODO
+        if (strings == null) {
+            return Stream.empty();
+        }
+        String validSuffix = (suffix != null) ? suffix : "";
+        return strings.map(s -> s + validSuffix);
     }
 
     /**
@@ -109,11 +119,15 @@ public class MappingStreams {
      * @return a stream of strings with the suffix removed
      */
     public Stream<String> removeSuffix(Stream<String> strings, String suffix) {
-        /*
-         * hint: If your expression is too complex, you can define a separate method
-         * that you call from the lambda expression.
-         */
-        return null; // TODO
+        if (strings == null) {
+            return Stream.empty();
+        }
+        return strings.map(s -> {
+            if (suffix != null && s != null && s.endsWith(suffix)) {
+                return s.substring(0, s.length() - suffix.length());
+            }
+            return s;
+        });
     }
 
     /**
@@ -128,15 +142,19 @@ public class MappingStreams {
      * @return a stream of strings
      */
     public Stream<String> streamFizzBuzz(IntStream numbers) {
-        /*
-         * The FizzBuzz pattern is as follows:
-         * - if the number is divisible by both 3 and 5, the string is "FizzBuzz"
-         * - if the number is divisible by 3, the string is "Fizz"
-         * - if the number is divisible by 5, the string is "Buzz"
-         * - otherwise, the string is the number as a string
-         */
-
-        // hint: see the mapToObj() method in IntStream
-        return null; // TODO
+        if (numbers == null) {
+            return Stream.empty();
+        }
+        return numbers.mapToObj(n -> {
+            if (n % 15 == 0) {
+                return "FizzBuzz";
+            } else if (n % 3 == 0) {
+                return "Fizz";
+            } else if (n % 5 == 0) {
+                return "Buzz";
+            } else {
+                return String.valueOf(n);
+            }
+        });
     }
 }

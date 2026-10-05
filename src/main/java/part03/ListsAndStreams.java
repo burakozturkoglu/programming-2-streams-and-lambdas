@@ -1,5 +1,6 @@
 package part03;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -12,17 +13,17 @@ import java.util.stream.Stream;
  */
 public class ListsAndStreams {
 
-    /**
+	/**
      * Returns a stream of all the strings in the specified list.
      *
      * @param strings the list of strings
      * @return a Stream of the same strings
      */
     public Stream<String> makeStream(List<String> strings) {
-        /*
-         * hint: see the documentation of List about how to create a Stream from a List.
-         */
-        return null; // TODO
+        if (strings == null) {
+            return Stream.empty();
+        }
+        return strings.stream();
     }
 
     /**
@@ -32,7 +33,10 @@ public class ListsAndStreams {
      * @return a List of the same strings
      */
     public List<String> makeList(Stream<String> stream) {
-        return null; // TODO
+        if (stream == null) {
+            return Collections.emptyList();
+        }
+        return stream.toList();
     }
 
     /**
@@ -45,9 +49,6 @@ public class ListsAndStreams {
      * @return a Stream containing at most 'count' strings from the list
      */
     public Stream<String> streamWithLimit(List<String> strings, int count) {
-        // TODO: check the documentation of Stream!
-        // If you want, you can utilize the 'makeStream()' method you implemented above.
-        return null;
+        return makeStream(strings).limit(count);
     }
-
 }

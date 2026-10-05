@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
  */
 public class IntegerStreams {
 
-    /**
+	/**
      * Generates an inclusive range of integer numbers between the specified 'from'
      * and 'to' values.
      *
@@ -26,12 +26,7 @@ public class IntegerStreams {
      *         (inclusive)
      */
     public IntStream numbersBetween(int from, int to) {
-        /*
-         * hint: see the documentation of IntStream about how to create a range of
-         * numbers. A closed range means that the 'to' value is included in the range,
-         * whereas an open range does not include the 'to' value.
-         */
-        return null; // TODO
+        return IntStream.rangeClosed(from, to);
     }
 
     /**
@@ -41,11 +36,10 @@ public class IntegerStreams {
      * @return the sum of the numbers in the stream
      */
     public int sum(IntStream stream) {
-        /*
-         * hint: see the documentation of IntStream about how to get the sum of the
-         * numbers in a stream.
-         */
-        return -1; // TODO
+        if (stream == null) {
+            return 0;
+        }
+        return stream.sum();
     }
 
     /**
@@ -59,10 +53,9 @@ public class IntegerStreams {
      *         Integer.MAX_VALUE)
      */
     public long countNumbersInStream(IntStream stream) {
-        /*
-         * hint: see the documentation of IntStream about how to count the number of
-         * elements in the stream.
-         */
-        return -1; // TODO
+        if (stream == null) {
+            return 0;
+        }
+        return stream.count();
     }
 }
